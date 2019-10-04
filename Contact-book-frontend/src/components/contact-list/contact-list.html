@@ -1,0 +1,150 @@
+<section>
+  
+<div>
+
+      <nav class="navbar px-4 navbar-light bg-light shadow">
+       
+        
+          <span class="navbar-text text-primary">
+             
+            <h2><i style="margin-right: 8px;" class="fa fa-book" aria-hidden="true"></i>Contact Book</h2>
+          </span>
+          <button class="btn btn-primary" v-on:click="Logout()">
+          <span class="text-right ">
+            Logout
+          </span></button>
+        </nav>
+
+    <div class=" col-md-12">
+      <button type="button" v-on:click="addData()" class="btn btn-primary offset-md-10 custom-button" data-toggle="modal"
+        data-target=".bd-example-modal-lg"><i   style="font-size: 25px;"  class="fa fa-plus" aria-hidden="true"></i>
+      </button>
+
+      <div class="modal fade bd-example-modal-lg" tabindex="-1" id="modal" role="dialog"
+        aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content col-md-12">
+            <h2 class="text-center py-3 border-bottom">{{ modalHeader }}</h2>
+
+            <form id="form-id" class="pb-3 pt-2">
+              <div class="row my-2">
+                <div class="col-5 d-flex align-items-center justify-content-end d-flex justify-content-end align-items-center">
+                  First name:
+                </div>
+                <div class="col-6">
+                  <input autocomplete="off" class="custom-input" type="text" v-model="contact.firstname" name="firstname" />
+                  <div class="error" v-if="!$v.contact.firstname.required">
+                    <small class="text-danger">*Field is required</small></div>
+                  <div class="error text-danger" v-if="!$v.contact.firstname.minLength"><small> must have at least
+                      {{$v.contact.firstname.$params.minLength.min}} letters.</small></div>
+
+                </div>
+
+              </div>
+
+
+              <div class="row my-2">
+                <div class="col-5 d-flex align-items-center justify-content-end text-right">Contact no:</div>
+                <div class="col-6">
+                  <input autocomplete="off" class="custom-input" type="text" v-model="contact.number" name="number" />
+                  <div class="error" v-if="!$v.contact.number.required">
+                    <small class="text-danger">*Field is required</small></div>
+                </div>
+              </div>
+              <div class="row my-2">
+                <div class="col-5 d-flex align-items-center justify-content-end text-right">
+                  E-mail:
+                </div>
+                <div class="col-6">
+                  <input autocomplete="off" class="custom-input" type="email" v-model="contact.email" name="email" />
+                 
+                    </div>
+              
+                </div>
+                <div class="row my-2">
+                  <div class="col-5 d-flex align-items-center justify-content-end text-right">
+                    City:
+                  </div>
+                  <div class="col-6">
+                    <input autocomplete="off" class="custom-input" type="text" v-model="contact.city" name="city" /> 
+                  </div>
+                </div>
+
+            </form>
+            <div class="modal-footer">
+              <button type="submit" id="submit" v-on:click="submit()" class="btn btn-primary"
+                data-dismiss="modal">Submit</button>
+              <button type="button" id="close" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="view-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">{{vContact.firstname}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body col-md-12">
+              <div class="d-block text-left">
+                <h5>Contact Details</h5>
+              </div>
+              <div class="ml-3">
+                <div v-for="(value, name) in vContact" class="row">
+                  <div class="col-5 d-flex align-items-center justify-content-end text-left ">{{ convertCamelCaseToNormalCase(name) }}</div>
+                  <div class="col-7 text-left">
+                    :
+                    <span class="ml-2">{{ value }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="searchbar my-3 ml-auto mr-3">
+          <input type="text" class="form-control" v-model="search" placeholder="Search">
+      </div>
+      <div class="container-fluid">
+        <table class="table table-striped">
+          <thead>
+            <tr style="font-size:20px;">
+              <th>Name</th>
+              <th>contact</th>
+              <th>City</th>
+              <th>e-mail</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="contact in content">
+              <td>{{contact.firstname}}</td>
+              <td>{{contact.number}}</td>
+              <td>{{contact.city}}</td>
+              <td>{{contact.email}}</td>
+              <td >
+                <button  v-on:click="viewContact(contact)" class="custom-btn  text-info" data-toggle="modal" data-target="#view-modal" name="view">
+                  <i class="fa fa-eye"></i>
+                </button>
+                <button  v-on:click="editdata(contact.id)" class="custom-btn  text-success">
+                  <i class="fa fa-edit" aria-hidden="true" data-target="#modal" data-toggle="modal"></i>
+                </button>
+                <button  v-on:click="deletedata(contact.id)" class=" custom-btn text-danger">
+                  <i class="fa fa-trash " aria-hidden="true"></i>
+                </button>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,37 @@
+<section>
+
+
+    <div  class="wrapper fadeInDown">
+      
+      <div id="formContent">
+      
+    
+      
+      
+        <!-- signup Form -->
+        
+        <form class="form-container">
+            <div >
+                <h2  class="text-info"> signup Form</h2>
+               </div>     
+               <div>
+          <input type="text" v-model="signup.email" id="email" class="custom-field fadeIn second" name="email" placeholder="email">
+          <div class="error" v-if="!$v.signup.email.required">
+              <small class="text-danger">*Field is required</small></div> 
+        </div>
+        <div>
+          <input type="password" v-model="signup.password" id="password" class="custom-field fadeIn third" name="password" placeholder="password">
+          <div class="error" v-if="!$v.signup.password.required">
+              <small class="text-danger">*Field is required</small></div> 
+        </div>
+          <input type="button" class="custom-field fadeIn fourth" v-on:click=" getsignupDetails()" value="Sign Up">
+        </form>
+    
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+          <a class="underlineHover" href="login">login ?</a>
+        </div>
+    
+      </div>
+    </div>
+    </section>

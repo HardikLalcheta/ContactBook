@@ -1,0 +1,40 @@
+<section>
+
+
+  <div class="wrapper fadeInDown">
+
+    <div id="formContent">
+
+
+
+
+      <!-- Login Form -->
+
+      <form class="form-container">
+        <div>
+          <h2 class="text-info"> Login Form</h2>
+        </div>
+        <div>
+        <input autocomplete="off" type="text" v-model="login.email"  id="email" class="custom-field fadeIn second"
+          name="email" placeholder="email">
+          <div class="error" v-if="!$v.login.email.required">
+              <small class="text-danger">*Field is required</small></div>
+        </div>
+        <div>
+        <input autocomplete="off" type="password" v-model="login.password"  id="password" class="custom-field fadeIn third"
+          name="password" placeholder="password">
+          <div class="error" v-if="!$v.login.password.required">
+              <small class="text-danger">*Field is required</small></div>
+        </div>
+        <input type="button" class="custom-field fadeIn fourth" v-on:click=" getLoginDetails()" value="Log In">
+      </form>
+
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="signup">Sign Up?</a>
+
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,32 @@
+.custom-button{
+    position: fixed;
+    right:0;
+    bottom: 0;
+    margin-bottom: 25px;
+    margin-right: 25px;
+}
+
+.searchbar {
+    width: 20%;
+}
+
+.custom-btn{
+    background: transparent;
+    border: none;
+    padding: 5px;
+    font-size: 16px;
+}
+.custom-btn:focus{
+    outline: none;
+}
+.custom-input{
+    padding: 8px 10px;
+    border: none;
+    background-color: whitesmoke;
+    border-radius: 5px;
+
+}
+.custom-input:focus{
+    border-bottom: 1px solid gray;
+    outline: none;
+}
