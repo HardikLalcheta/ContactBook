@@ -1,2 +1,2 @@
 # ContactBook
-web application for maintain your contacts
+web application to maintain your contacts
